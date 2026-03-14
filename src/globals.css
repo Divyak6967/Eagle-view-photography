@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+/* In your globals.css */
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* In your component's CSS module or globals.css */
+.nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-menu li {
+  list-style-type: none;
+}
+
+/* Auto-scrolling gallery */
+.auto-scroll {
+  overflow: hidden;
+}
+
+.auto-scroll-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: scroll-left 30s linear infinite;
+}
+
+.auto-scroll-track:hover {
+  animation-play-state: paused;
+}
+
+.auto-scroll-item {
+  width: clamp(360px, 40vw, 460px);
+  height: clamp(600px, 28vw, 320px);
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

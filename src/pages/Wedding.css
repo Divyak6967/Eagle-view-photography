@@ -1,0 +1,140 @@
+
+
+
+
+.wedding-container {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* BACKGROUND LAYER */
+.background-layer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-size: 90%;
+  background-position: center;
+  animation: zoomOut 6s ease forwards;
+  transition: opacity 0.8s ease-in-out;
+  z-index: 1;
+}
+
+/* Overlay content */
+.overlay {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  /* background: rgba(0, 0, 0, 0.45); */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 80px;
+  color: white;
+}
+
+/* LEFT */
+.left-content h1 {
+  font-size: clamp(48px, 6vw, 75px);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* BUTTON */
+.view-btn {
+  padding: 15px 30px;
+  border-radius: 20px;
+  border: none;
+  outline: black;
+  background: white;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.view-btn:hover {
+  background: #f5d3b3;
+}
+
+/* RIGHT */
+.right-content ul {
+  list-style: none;
+}
+
+.right-content li {
+  margin: 15px 0;
+  font-size: 25px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.right-content li:hover {
+  opacity: 1;
+}
+
+.right-content .active {
+  font-weight: bold;
+  opacity: 1;
+}
+
+/* ZOOM OUT */
+@keyframes zoomOut {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* TEXT FADE */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-content {
+  animation: fadeContent 0.8s ease forwards;
+}
+
+@keyframes fadeContent {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-content {
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
