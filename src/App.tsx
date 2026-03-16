@@ -20,7 +20,7 @@ import Weddings from './pages/Weddings';
 import CoupleGallery from './pages/CoupleGallery';
 import Weddingservice from './pages/WeddingService';
 import Promotion from './pages/Promotion';
-import CustomCursor from './pages/customcursor';
+import CustomCursor from './pages/CustomCursor';
 
 
 function App() {
