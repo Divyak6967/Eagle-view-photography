@@ -22,11 +22,12 @@ import Weddingservice from './pages/WeddingService';
 import Promotion from './pages/Promotion';
 import CustomCursor from './pages/customcursor';
 
+
 function App() {
   return (
     <Router>
       <Navbar />
-      <CustomCursor />
+     <CustomCursor/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
