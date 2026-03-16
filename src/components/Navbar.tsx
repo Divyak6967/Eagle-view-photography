@@ -15,6 +15,7 @@ const servicesList = [
 const navLinks = [
   { name: "Home",        path: "/" },
   { name: "Our Gallery", path: "/gallery" },
+   { name: "Packages", path: "/Packages" },
   { name: "About Us",    path: "/about" },
   { name: "Contact",     path: "/contact" },
 ];

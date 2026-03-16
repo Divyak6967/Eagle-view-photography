@@ -21,6 +21,7 @@ import CoupleGallery from './pages/CoupleGallery';
 import Weddingservice from './pages/WeddingService';
 import Promotion from './pages/Promotion';
 import CustomCursor from './pages/CustomCursor';
+import PackagesPage from './pages/Packages';
 
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
         <Route path="/WeddingService" element={<Weddingservice />} />
         <Route path="/couple/:id" element={<CoupleGallery />} />
          <Route path="promotion" element={<Promotion />} />
+         <Route path="/Packages" element={<PackagesPage />} />
+
+
       </Routes>
       <Footer />
     </Router>
