@@ -4,6 +4,7 @@ import Service from "../components/Service";
 import Ratings from "../components/Ratings";
 import Testimonials from "../components/Testimonials";
 import Wedding from "../components/Wedding";
+import VideoHero from "../components/VideoHero";
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
       {/* Hero Section with Video */}
       <div className="relative h-screen w-full overflow-hidden">
         {/* Background Video */}
-        <video
+        {/* <video
           autoPlay
           loop
           muted
@@ -19,8 +20,9 @@ export default function Home() {
           className="absolute top-0 left-0 min-w-full min-h-full object-cover"
         >
           <source src="/Videos/Backgorund1.mp4" type="video/mp4" />
-        </video>
-        
+        </video> */}
+              <VideoHero />
+
         {/* Optional overlay content */}
         <div className="absolute inset-0  flex items-center justify-center">
           <div className="text-center text-white">
