@@ -20,11 +20,13 @@ import Weddings from './pages/Weddings';
 import CoupleGallery from './pages/CoupleGallery';
 import Weddingservice from './pages/WeddingService';
 import Promotion from './pages/Promotion';
+import CustomCursor from './pages/customcursor';
 
 function App() {
   return (
     <Router>
       <Navbar />
+      <CustomCursor />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

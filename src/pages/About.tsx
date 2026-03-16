@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import Testimonials from '../components/Testimonials';
 import Ratings from '../components/Ratings';
 import Service from '../components/Service';
 import { Link } from 'react-router-dom';
+import { SiThreads } from 'react-icons/si';
 
 const AboutPage = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -117,7 +118,7 @@ const AboutPage = () => {
           <div className="ab2-story-inner">
             <div className="ab2-img-stack">
               <div className="ab2-img-primary">
-                <img src="/Images/3.jpg.jpeg" alt="Eagle View Photography" />
+                <img src="/Images/kathirimg.jpg" alt="Eagle View Photography" />
                 <div className="ab2-img-primary-overlay" />
                 <span className="ab2-fc ab2-fc--tl" />
                 <span className="ab2-fc ab2-fc--tr" />
@@ -157,9 +158,9 @@ const AboutPage = () => {
               </div>
               <div className="ab2-actions">
                 <div className="ab2-socials">
-                  <a href="#" className="ab2-soc ab2-soc--ig" aria-label="Instagram"><FaInstagram /></a>
-                  <a href="#" className="ab2-soc ab2-soc--fb" aria-label="Facebook"><FaFacebookF /></a>
-                  <a href="#" className="ab2-soc ab2-soc--tw" aria-label="Twitter"><FaTwitter /></a>
+                  <a href="https://www.instagram.com/eagle_view_photogrphy?igsh=dTB6eHFlYzBmcnox" className="ab2-soc ab2-soc--ig" aria-label="Instagram"><FaInstagram /></a>
+                  <a href="https://youtube.com/@eagle_view_photography?si=oQN8q3hP3jw3TGX_" className="ab2-soc ab2-soc--fb" aria-label="Facebook"><FaYoutube /></a>
+                  <a href="https://www.threads.com/@eagle_view_photogrphy" className="ab2-soc ab2-soc--tw" aria-label="threats"><SiThreads /></a>
                 </div>
                 <Link to="/contact" className="ab2-cta">
                   <span className="ab2-cta-inner">
@@ -319,7 +320,7 @@ const AboutPage = () => {
 
         /* Stacked images */
         .ab2-img-stack{position:relative;height:560px}
-        .ab2-img-primary{position:absolute;top:0;left:0;width:82%;height:85%;overflow:hidden}
+        .ab2-img-primary{position:absolute;top:0;left:0;width:72%;height:90%;overflow:hidden}
         .ab2-img-primary img{width:100%;height:100%;object-fit:cover;filter:brightness(0.85) sepia(0.1);transition:transform 0.8s ease,filter 0.5s ease}
         .ab2-img-primary:hover img{transform:scale(1.04);filter:brightness(0.75) sepia(0.06)}
         .ab2-img-primary-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,6,4,0.4) 0%,transparent 60%)}
