@@ -356,6 +356,8 @@ const Footer = () => {
         .ft-bottom-link {
           font-size: 0.72rem; letter-spacing: 0.05em;
           color: rgba(255,255,255,0.25); text-decoration: none;
+            pointer-events: none;
+  user-select: none;
           transition: color 0.3s;
         }
         .ft-bottom-link:hover { color: var(--g-light); }
