@@ -72,7 +72,7 @@ const Page = () => {
 
       {/* ── HERO ── */}
       <div className={`eg-hero ${heroVisible ? "eg-hero--visible" : ""}`}>
-        <img src="/Images/Backgrounds/background.jpg" alt="Engagement" className="eg-hero-img" />
+        <img loading="lazy" decoding="async" src="/Images/Backgrounds/background.jpg" alt="Engagement" className="eg-hero-img" />
         <div className="eg-hero-overlay" />
 
         <div className="eg-particles" aria-hidden="true">
@@ -128,7 +128,7 @@ const Page = () => {
             onClick={() => openLb(i)}
           >
             <div className="eg-item-inner">
-              <img src={item.img} alt={item.label} className="eg-img" />
+              <img loading="lazy" decoding="async" src={item.img} alt={item.label} className="eg-img" />
               <div className="eg-shimmer" />
 
               <div className="eg-overlay">
@@ -181,7 +181,7 @@ const Page = () => {
 
           <div className={`eg-lb-frame ${lbAnim ? "eg-lb-frame--anim" : ""}`} onClick={(e) => e.stopPropagation()}>
             <div className="eg-lb-img-wrap">
-              <img src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="eg-lb-img" />
+              <img loading="lazy" decoding="async" src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="eg-lb-img" />
               <span className="eg-lb-corner eg-lb-tl" />
               <span className="eg-lb-corner eg-lb-tr" />
               <span className="eg-lb-corner eg-lb-bl" />

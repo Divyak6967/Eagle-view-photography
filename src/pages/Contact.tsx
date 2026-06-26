@@ -240,7 +240,7 @@ const ContactPage = () => {
 
           {/* Studio photo */}
           <div className="cp-studio-photo">
-            <img src="/Images/Backgrounds/background.jpg" alt="Eagle View Studio" />
+            <img loading="lazy" decoding="async" src="/Images/Backgrounds/background.jpg" alt="Eagle View Studio" />
             <div className="cp-studio-overlay" />
             <div className="cp-studio-caption">
               <span className="cp-studio-name">Eagle View Studio</span>

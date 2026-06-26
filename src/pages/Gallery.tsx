@@ -155,7 +155,7 @@ const ViewPhotosPage = () => {
               <div className="vp-strip-inner">
                 {[...col1, ...col1].map((src, i) => (
                   <div key={i} className="vp-strip-card">
-                    <img src={src} alt="" />
+                    <img loading="lazy" decoding="async" src={src} alt="" />
                     <div className="vp-strip-shimmer" />
                   </div>
                 ))}
@@ -165,7 +165,7 @@ const ViewPhotosPage = () => {
               <div className="vp-strip-inner">
                 {[...col2, ...col2].map((src, i) => (
                   <div key={i} className="vp-strip-card">
-                    <img src={src} alt="" />
+                    <img loading="lazy" decoding="async" src={src} alt="" />
                     <div className="vp-strip-shimmer" />
                   </div>
                 ))}
@@ -175,7 +175,7 @@ const ViewPhotosPage = () => {
               <div className="vp-strip-inner">
                 {[...col3, ...col3].map((src, i) => (
                   <div key={i} className="vp-strip-card">
-                    <img src={src} alt="" />
+                    <img loading="lazy" decoding="async" src={src} alt="" />
                     <div className="vp-strip-shimmer" />
                   </div>
                 ))}
@@ -254,7 +254,7 @@ const ViewPhotosPage = () => {
             >
               {/* Image */}
               <div className="vp-card-img-wrap">
-                <img src={img} alt={labels[i]} className="vp-card-img" />
+                <img loading="lazy" decoding="async" src={img} alt={labels[i]} className="vp-card-img" />
 
                 {/* Shimmer on load */}
                 <div className="vp-card-shimmer" />
@@ -317,7 +317,7 @@ const ViewPhotosPage = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="vp-lb-img-wrap">
-              <img src={images[lightbox]} alt={labels[lightbox]} className="vp-lb-img" />
+              <img loading="lazy" decoding="async" src={images[lightbox]} alt={labels[lightbox]} className="vp-lb-img" />
               <span className="vp-lb-corner vp-lb-tl" />
               <span className="vp-lb-corner vp-lb-tr" />
               <span className="vp-lb-corner vp-lb-bl" />

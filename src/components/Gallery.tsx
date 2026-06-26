@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const row1 = [
-  "/Images/img6.jpg",
+  "/Images/Gallery/roleimg1.jpeg",
   "/Images/img1.jpg",
   "/Images/img7.jpg",
   "/Images/img3.jpg",
@@ -54,7 +54,7 @@ const Gallery = () => {
         <div className={`gl-strip gl-strip--left ${paused === "row1" ? "gl-strip--paused" : ""}`}>
           {[...row1, ...row1, ...row1].map((img, i) => (
             <div key={i} className="gl-item">
-              <img src={img} alt={labels1[i % labels1.length]} className="gl-img" />
+              <img loading="lazy" decoding="async" src={img} alt={labels1[i % labels1.length]} className="gl-img" />
               <div className="gl-item-overlay">
                 <span className="gl-item-label">{labels1[i % labels1.length]}</span>
               </div>
@@ -74,7 +74,7 @@ const Gallery = () => {
         <div className={`gl-strip gl-strip--right ${paused === "row2" ? "gl-strip--paused" : ""}`}>
           {[...row2, ...row2, ...row2].map((img, i) => (
             <div key={i} className="gl-item gl-item--tall">
-              <img src={img} alt={labels2[i % labels2.length]} className="gl-img" />
+              <img loading="lazy" decoding="async" src={img} alt={labels2[i % labels2.length]} className="gl-img" />
               <div className="gl-item-overlay">
                 <span className="gl-item-label">{labels2[i % labels2.length]}</span>
               </div>
@@ -207,10 +207,10 @@ const Gallery = () => {
         /* ── Items ── */
         .gl-item {
           position: relative;
-          width: 300px; height: 200px;
+          width: 300px; height: 400px;
           flex-shrink: 0; overflow: hidden; cursor: pointer;
         }
-        .gl-item--tall { height: 240px; width: 320px; }
+        .gl-item--tall { height: 400px; width: 320px; }
 
         .gl-img {
           width: 100%; height: 100%; object-fit: cover;

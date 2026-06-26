@@ -44,7 +44,7 @@ const AboutPage = () => {
         {/* ── HERO: Split-screen cinematic ── */}
         <section className="ab2-hero">
           <div className="ab2-hero-img-panel">
-            <img
+            <img loading="lazy" decoding="async"
               src="/Images/3.jpg.jpeg"
               alt="Eagle View Photography"
               className="ab2-hero-img"
@@ -118,7 +118,7 @@ const AboutPage = () => {
           <div className="ab2-story-inner">
             <div className="ab2-img-stack">
               <div className="ab2-img-primary">
-                <img src="/Images/kathirimg.jpg" alt="Eagle View Photography" />
+                <img loading="lazy" decoding="async" src="/Images/kathirimg.jpg" alt="Eagle View Photography" />
                 <div className="ab2-img-primary-overlay" />
                 <span className="ab2-fc ab2-fc--tl" />
                 <span className="ab2-fc ab2-fc--tr" />
@@ -126,7 +126,7 @@ const AboutPage = () => {
                 <span className="ab2-fc ab2-fc--br" />
               </div>
               <div className="ab2-img-accent">
-                <img src="/Images/img3.jpg" alt="Photography" />
+                <img loading="lazy" decoding="async" src="/Images/img3.jpg" alt="Photography" />
                 <div className="ab2-img-accent-badge">
                   <span className="ab2-badge-large">800<sup>+</sup></span>
                   <span className="ab2-badge-sub">Weddings Captured</span>

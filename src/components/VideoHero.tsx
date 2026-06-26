@@ -4,9 +4,29 @@ import { Link } from "react-router-dom";
 const VideoHero = () => {
   const [loaded, setLoaded]     = useState(false);
   const [lineIdx, setLineIdx]   = useState(0);
+  const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Stagger text lines in one by one after video loads
+  // Show the hero text immediately on mount — don't make the user wait on the
+  // heavy background video before any content appears.
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
+  // Defer loading the (large) background video until the page has painted and
+  // the browser is idle. The poster image shows instantly in the meantime.
+  useEffect(() => {
+    const start = () => setVideoSrc("/Videos/Backgorund1.mp4");
+    const ric = (window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback;
+    if (ric) {
+      ric(start, { timeout: 2000 });
+    } else {
+      const t = setTimeout(start, 1200);
+      return () => clearTimeout(t);
+    }
+  }, []);
+
+  // Stagger text lines in one by one
   useEffect(() => {
     if (!loaded) return;
     const timers = [0, 400, 800, 1300, 1900].map((delay, i) =>
@@ -26,12 +46,13 @@ const VideoHero = () => {
       <video
         ref={videoRef}
         className="vh-video"
-        src="/Videos/Backgorund1.mp4"       // ← change to your video path
+        src={videoSrc}                       // set after first paint (deferred)
+        poster="/Images/Backgrounds/background.jpg"
         autoPlay
         muted
         loop
         playsInline
-        onCanPlay={() => setLoaded(true)}
+        preload="none"
       />
 
       {/* ── Multi-layer overlays ── */}

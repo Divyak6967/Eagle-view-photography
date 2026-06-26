@@ -74,7 +74,7 @@ const Page = () => {
 
       {/* ── HERO ── */}
       <div className={`mt-hero ${heroVisible ? "mt-hero--visible" : ""}`}>
-        <img src="/Images/Backgrounds/background.jpg" alt="Maternity" className="mt-hero-img" />
+        <img loading="lazy" decoding="async" src="/Images/Backgrounds/background.jpg" alt="Maternity" className="mt-hero-img" />
         <div className="mt-hero-overlay" />
 
         <div className="mt-particles" aria-hidden="true">
@@ -127,7 +127,7 @@ const Page = () => {
             onClick={() => openLb(i)}
           >
             <div className="mt-item-inner">
-              <img src={item.img} alt={item.label} className="mt-img" />
+              <img loading="lazy" decoding="async" src={item.img} alt={item.label} className="mt-img" />
               <div className="mt-shimmer" />
               <div className="mt-overlay">
                 <div className="mt-overlay-body">
@@ -175,7 +175,7 @@ const Page = () => {
           </button>
           <div className={`mt-lb-frame ${lbAnim ? "mt-lb-frame--anim" : ""}`} onClick={(e) => e.stopPropagation()}>
             <div className="mt-lb-img-wrap">
-              <img src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="mt-lb-img" />
+              <img loading="lazy" decoding="async" src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="mt-lb-img" />
               <span className="mt-lb-corner mt-lb-tl" />
               <span className="mt-lb-corner mt-lb-tr" />
               <span className="mt-lb-corner mt-lb-bl" />

@@ -74,7 +74,7 @@ const Page = () => {
 
       {/* ── HERO ── */}
       <div className={`bb-hero ${heroVisible ? "bb-hero--visible" : ""}`}>
-        <img src="/Images/Backgrounds/background.jpg" alt="Baby Shoots" className="bb-hero-img" />
+        <img loading="lazy" decoding="async" src="/Images/Backgrounds/background.jpg" alt="Baby Shoots" className="bb-hero-img" />
         <div className="bb-hero-overlay" />
 
         <div className="bb-particles" aria-hidden="true">
@@ -127,7 +127,7 @@ const Page = () => {
             onClick={() => openLb(i)}
           >
             <div className="bb-item-inner">
-              <img src={item.img} alt={item.label} className="bb-img" />
+              <img loading="lazy" decoding="async" src={item.img} alt={item.label} className="bb-img" />
               <div className="bb-shimmer" />
               <div className="bb-overlay">
                 <div className="bb-overlay-body">
@@ -175,7 +175,7 @@ const Page = () => {
           </button>
           <div className={`bb-lb-frame ${lbAnim ? "bb-lb-frame--anim" : ""}`} onClick={(e) => e.stopPropagation()}>
             <div className="bb-lb-img-wrap">
-              <img src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="bb-lb-img" />
+              <img loading="lazy" decoding="async" src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="bb-lb-img" />
               <span className="bb-lb-corner bb-lb-tl" />
               <span className="bb-lb-corner bb-lb-tr" />
               <span className="bb-lb-corner bb-lb-bl" />

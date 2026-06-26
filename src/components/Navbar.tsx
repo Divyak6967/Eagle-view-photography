@@ -67,7 +67,7 @@ const Navbar = () => {
 
           {/* ── Logo ── */}
           <Link to="/" className="nb-logo-wrap">
-            <img src="/Images/logo2.png" alt="Eagle View" className="nb-logo" />
+            <img loading="lazy" decoding="async" src="/Images/logo2.png" alt="Eagle View" className="nb-logo" />
           </Link>
 
           {/* ── Desktop Nav ── */}

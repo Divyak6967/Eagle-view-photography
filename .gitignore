@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# pristine image originals (backup made by scripts/optimize-images.mjs)
+/image-originals-backup
+
 # debug
 npm-debug.log*
 yarn-debug.log*

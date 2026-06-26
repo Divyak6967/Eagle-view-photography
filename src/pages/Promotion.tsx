@@ -69,7 +69,7 @@ const Promotion = () => {
 
       {/* ── HERO ── */}
       <div className={`pr-hero ${heroVisible ? "pr-hero--visible" : ""}`}>
-        <img src="/Images/Backgrounds/background.jpg" alt="Promotion" className="pr-hero-img" />
+        <img loading="lazy" decoding="async" src="/Images/Backgrounds/background.jpg" alt="Promotion" className="pr-hero-img" />
         <div className="pr-hero-overlay" />
 
         <div className="pr-particles" aria-hidden="true">
@@ -122,7 +122,7 @@ const Promotion = () => {
             onClick={() => openLb(i)}
           >
             <div className="pr-item-inner">
-              <img src={item.img} alt={item.label} className="pr-img" />
+              <img loading="lazy" decoding="async" src={item.img} alt={item.label} className="pr-img" />
               <div className="pr-shimmer" />
               <div className="pr-overlay">
                 <div className="pr-overlay-body">
@@ -170,7 +170,7 @@ const Promotion = () => {
           </button>
           <div className={`pr-lb-frame ${lbAnim ? "pr-lb-frame--anim" : ""}`} onClick={(e) => e.stopPropagation()}>
             <div className="pr-lb-img-wrap">
-              <img src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="pr-lb-img" />
+              <img loading="lazy" decoding="async" src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="pr-lb-img" />
               <span className="pr-lb-corner pr-lb-tl" />
               <span className="pr-lb-corner pr-lb-tr" />
               <span className="pr-lb-corner pr-lb-bl" />

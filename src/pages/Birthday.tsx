@@ -31,67 +31,67 @@ const Page = () => {
       <div className="gallery-grid">
 
         <div className="gallery-item tall">
-          <img src="/Images/img1.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img1.jpg" alt="" className="gallery-img" />
         </div>
 
         <div className="gallery-item">
-          <img src="/Images/img2.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img2.jpg" alt="" className="gallery-img" />
         </div>
          <div className="gallery-item">
-          <img src="/Images/img4.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img4.jpg" alt="" className="gallery-img" />
         </div>
 
         <div className="gallery-item wide">
-          <img src="/Images/img3.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img3.jpg" alt="" className="gallery-img" />
         </div>
 
         <div className="gallery-item">
-          <img src="/Images/img4.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img4.jpg" alt="" className="gallery-img" />
         </div>
 
         <div className="gallery-item tall">
-          <img src="/Images/img5.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img5.jpg" alt="" className="gallery-img" />
         </div>
 
         <div className="gallery-item">
-          <img src="/Images/img6.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img6.jpg" alt="" className="gallery-img" />
         </div>
              <div className="gallery-item tall">
-          <img src="/Images/img1.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img1.jpg" alt="" className="gallery-img" />
         </div>
 
   <div className="gallery-item">
-          <img src="/Images/img4.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img4.jpg" alt="" className="gallery-img" />
         </div>
 
         <div className="gallery-item">
-          <img src="/Images/img2.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img2.jpg" alt="" className="gallery-img" />
         </div>
          <div className="gallery-item">
-          <img src="/Images/img4.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img4.jpg" alt="" className="gallery-img" />
         </div>
 
         <div className="gallery-item wide">
-          <img src="/Images/img3.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img3.jpg" alt="" className="gallery-img" />
         </div>
 
         <div className="gallery-item">
-          <img src="/Images/img4.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img4.jpg" alt="" className="gallery-img" />
         </div>
 
         <div className="gallery-item tall">
-          <img src="/Images/img5.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img5.jpg" alt="" className="gallery-img" />
         </div>
           <div className="gallery-item wide">
-          <img src="/Images/img3.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img3.jpg" alt="" className="gallery-img" />
         </div>
 
         <div className="gallery-item">
-          <img src="/Images/img6.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img6.jpg" alt="" className="gallery-img" />
         </div>
 
           <div className="gallery-item">
-          <img src="/Images/img4.jpg" alt="" className="gallery-img" />
+          <img loading="lazy" decoding="async" src="/Images/img4.jpg" alt="" className="gallery-img" />
         </div>
 
 

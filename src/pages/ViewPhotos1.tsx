@@ -24,15 +24,15 @@ const View1Page = () => {
 
   <div className="gallery-column">
     <div className="gallery-item">
-      <img src="/Images/img2.jpg" alt="img1" className="gallery-img" />
+      <img loading="lazy" decoding="async" src="/Images/img2.jpg" alt="img1" className="gallery-img" />
     </div>
 
     <div className="gallery-item">
-      <img src="/Images/img5.jpg" alt="img2" className="gallery-img" />
+      <img loading="lazy" decoding="async" src="/Images/img5.jpg" alt="img2" className="gallery-img" />
     </div>
 
     <div className="gallery-item">
-      <img src="/Images/img4.jpg" alt="img3" className="gallery-img" />
+      <img loading="lazy" decoding="async" src="/Images/img4.jpg" alt="img3" className="gallery-img" />
     </div>
   </div>
 </section>

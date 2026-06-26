@@ -151,7 +151,7 @@ const Wedding = () => {
                 onClick={() => goTo(i)}
               >
                 <div className="wd-thumb-wrap">
-                  <img src={c.image} alt={c.name} className="wd-thumb" />
+                  <img loading="lazy" decoding="async" src={c.image} alt={c.name} className="wd-thumb" />
                   <div className="wd-thumb-overlay" />
                 </div>
                 <div className="wd-list-info">

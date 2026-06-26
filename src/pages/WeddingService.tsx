@@ -45,7 +45,7 @@ const Weddingservice = () => {
 
       {/* ── HERO ── */}
       <div className={`ws-hero ${heroVisible ? "ws-hero--visible" : ""}`}>
-        <img src="/Images/Backgrounds/background.jpg" alt="Wedding" className="ws-hero-img" />
+        <img loading="lazy" decoding="async" src="/Images/Backgrounds/background.jpg" alt="Wedding" className="ws-hero-img" />
         <div className="ws-hero-overlay" />
 
         {/* Floating particles */}
@@ -128,7 +128,7 @@ const Weddingservice = () => {
 
               {/* Image */}
               <div className="ws-img-wrap">
-                <img src={couple.img} alt={`${couple.groom} & ${couple.bride}`} className="ws-img" />
+                <img loading="lazy" decoding="async" src={couple.img} alt={`${couple.groom} & ${couple.bride}`} className="ws-img" />
                 <div className="ws-img-shimmer" />
               </div>
 

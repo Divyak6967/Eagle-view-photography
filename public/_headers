@@ -1,0 +1,16 @@
+# Cache headers for Netlify & Cloudflare Pages.
+# (Vercel ignores this file — see vercel.json for the Vercel equivalent.)
+
+# Hashed build assets never change → cache forever.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Media: long cache. Bump the filename if you ever replace an image/video.
+/Images/*
+  Cache-Control: public, max-age=2592000
+/Videos/*
+  Cache-Control: public, max-age=2592000
+
+# HTML must always revalidate so deploys go live immediately.
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate

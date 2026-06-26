@@ -72,7 +72,7 @@ const Page = () => {
 
       {/* ── HERO ── */}
       <div className={`pw-hero ${heroVisible ? "pw-hero--visible" : ""}`}>
-        <img src="/Images/Backgrounds/background.jpg" alt="Wedding Shoots" className="pw-hero-img" />
+        <img loading="lazy" decoding="async" src="/Images/Backgrounds/background.jpg" alt="Wedding Shoots" className="pw-hero-img" />
         <div className="pw-hero-overlay" />
 
         <div className="pw-particles" aria-hidden="true">
@@ -128,7 +128,7 @@ const Page = () => {
             onClick={() => openLb(i)}
           >
             <div className="pw-item-inner">
-              <img src={item.img} alt={item.label} className="pw-img" />
+              <img loading="lazy" decoding="async" src={item.img} alt={item.label} className="pw-img" />
               <div className="pw-shimmer" />
 
               <div className="pw-overlay">
@@ -181,7 +181,7 @@ const Page = () => {
 
           <div className={`pw-lb-frame ${lbAnim ? "pw-lb-frame--anim" : ""}`} onClick={(e) => e.stopPropagation()}>
             <div className="pw-lb-img-wrap">
-              <img src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="pw-lb-img" />
+              <img loading="lazy" decoding="async" src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="pw-lb-img" />
               <span className="pw-lb-corner pw-lb-tl" />
               <span className="pw-lb-corner pw-lb-tr" />
               <span className="pw-lb-corner pw-lb-bl" />

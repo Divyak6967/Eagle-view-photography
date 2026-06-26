@@ -74,7 +74,7 @@ const Page = () => {
 
       {/* ── HERO ── */}
       <div className={`ms-hero ${heroVisible ? "ms-hero--visible" : ""}`}>
-        <img src="/Images/Backgrounds/background.jpg" alt="Modelling" className="ms-hero-img" />
+        <img loading="lazy" decoding="async" src="/Images/Backgrounds/background.jpg" alt="Modelling" className="ms-hero-img" />
         <div className="ms-hero-overlay" />
 
         <div className="ms-particles" aria-hidden="true">
@@ -127,7 +127,7 @@ const Page = () => {
             onClick={() => openLb(i)}
           >
             <div className="ms-item-inner">
-              <img src={item.img} alt={item.label} className="ms-img" />
+              <img loading="lazy" decoding="async" src={item.img} alt={item.label} className="ms-img" />
               <div className="ms-shimmer" />
               <div className="ms-overlay">
                 <div className="ms-overlay-body">
@@ -175,7 +175,7 @@ const Page = () => {
           </button>
           <div className={`ms-lb-frame ${lbAnim ? "ms-lb-frame--anim" : ""}`} onClick={(e) => e.stopPropagation()}>
             <div className="ms-lb-img-wrap">
-              <img src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="ms-lb-img" />
+              <img loading="lazy" decoding="async" src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="ms-lb-img" />
               <span className="ms-lb-corner ms-lb-tl" />
               <span className="ms-lb-corner ms-lb-tr" />
               <span className="ms-lb-corner ms-lb-bl" />

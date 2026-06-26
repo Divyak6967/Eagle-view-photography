@@ -80,7 +80,7 @@ const Service = () => {
 
               {/* Icon */}
               <div className="sv-icon-wrap">
-                <img src={s.icon} alt={s.title} className="sv-icon" />
+                <img loading="lazy" decoding="async" src={s.icon} alt={s.title} className="sv-icon" />
               </div>
 
               {/* Text */}

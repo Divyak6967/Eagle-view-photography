@@ -76,7 +76,7 @@ const Ratings = () => {
 
       {/* Background */}
       <div className="rt-bg">
-        <img src="/Images/Camera.jpg" alt="" className="rt-bg-img" />
+        <img loading="lazy" decoding="async" src="/Images/Camera.jpg" alt="" className="rt-bg-img" />
         <div className="rt-bg-overlay" />
         <div className="rt-grid-lines">
           {[...Array(6)].map((_, i) => (
@@ -125,7 +125,7 @@ const Ratings = () => {
                 background: hovered === i ? 'rgba(201,168,76,0.12)' : 'rgba(201,168,76,0.04)',
                 borderColor: hovered === i ? 'var(--g-primary)' : 'rgba(201,168,76,0.25)',
               }}>
-                <img
+                <img loading="lazy" decoding="async"
                   src={s.icon}
                   alt={s.label}
                   className="rt-icon"

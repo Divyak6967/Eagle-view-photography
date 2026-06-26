@@ -99,7 +99,7 @@ const couple = couples[id];
                 overflow: "hidden",
                 boxShadow: "0 10px 30px rgba(0,0,0,0.2)"
               }}>
-                <img
+                <img loading="lazy" decoding="async"
                   src={img}
                   alt={`Gallery ${id} - Image ${index + 1}`}
                   style={{
