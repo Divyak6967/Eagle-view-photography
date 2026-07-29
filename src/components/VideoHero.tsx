@@ -202,23 +202,23 @@ const VideoHero = () => {
         .vh-overlay { position: absolute; inset: 0; pointer-events: none; }
 
         .vh-overlay--base {
-          background: rgba(6,4,2,0.48);
+          background: rgba(6,4,2,0.32);
         }
         .vh-overlay--vignette {
           background: radial-gradient(ellipse at 50% 50%,
-            transparent 30%,
-            rgba(4,3,1,0.55) 75%,
-            rgba(4,3,1,0.85) 100%);
+            transparent 35%,
+            rgba(4,3,1,0.4) 75%,
+            rgba(4,3,1,0.68) 100%);
         }
         .vh-overlay--bottom {
           background: linear-gradient(to top,
-            rgba(8,6,4,1) 0%,
-            rgba(8,6,4,0.6) 15%,
+            rgba(8,6,4,0.9) 0%,
+            rgba(8,6,4,0.45) 15%,
             transparent 40%);
         }
         .vh-overlay--top {
           background: linear-gradient(to bottom,
-            rgba(8,6,4,0.5) 0%,
+            rgba(8,6,4,0.35) 0%,
             transparent 25%);
         }
 

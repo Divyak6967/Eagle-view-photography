@@ -6,9 +6,8 @@ const servicesList = [
   { name: "Engagements",     path: "/engagement",     icon: "✦" },
   { name: "Pre-Wedding",     path: "/prewedding",     icon: "✦" },
   { name: "Modal Shoot",     path: "/modeling",       icon: "✦" },
-  { name: "Maternity",       path: "/maternity",      icon: "✦" },
   { name: "Puberty",         path: "/puperty",        icon: "✦" },
-  { name: "Baby Shoot",      path: "/babyshower",     icon: "✦" },
+  { name: "Baby Shower",     path: "/babyshower",     icon: "✦" },
   { name: "Promotion Shoot", path: "/promotion",      icon: "✦" },
 ];
 

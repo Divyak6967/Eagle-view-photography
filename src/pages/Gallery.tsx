@@ -2,21 +2,21 @@ import React, { useState, useEffect, useRef } from "react";
 
 const images = [
   "/Images/img1.jpg", "/Images/img2.jpg", "/Images/img4.jpg",
-  "/Images/img5.jpg", "/Images/img8.jpg", "/Images/img6.jpg",
-  "/Images/img3.jpg", "/Images/img7.jpg", "/Images/img9.jpg",
-  "/Images/img1.jpg", "/Images/img4.jpg", "/Images/img6.jpg",
+  "/Images/img5.jpg", "/Images/babyshower/couple-cover.jpg", "/Images/img6.jpg",
+  "/Images/img3.jpg", "/Images/Modeling/EAGL2949.jpg", "/Images/img9.jpg",
+  "/Images/img1.jpg", "/Images/babyshower/EAGL2790.jpg", "/Images/img6.jpg",
   "/Images/img2.jpg", "/Images/img5.jpg", "/Images/img8.jpg",
-  "/Images/img3.jpg", "/Images/img7.jpg", "/Images/img9.jpg",
+  "/Images/img3.jpg", "/Images/Modeling/EAGL3062.jpg", "/Images/img9.jpg",
   "/Images/img1.jpg", "/Images/img6.jpg", "/Images/img2.jpg",
   "/Images/img4.jpg", "/Images/img5.jpg", "/Images/img8.jpg",
 ];
 
 const labels = [
   "Wedding Day",    "First Look",       "Bridal Portraits", "Golden Hour",
-  "Ceremony",       "Reception",        "Candid Moments",   "Love Story",
-  "Details",        "Vows",             "Family",           "The Couple",
+  "Baby Shower",    "Reception",        "Candid Moments",   "Modeling",
+  "Details",        "Vows",             "Baby Shower",      "The Couple",
   "Getting Ready",  "Sunset Kiss",      "Celebration",      "Emotions",
-  "Together",       "Laughter",         "Rings",            "Dancing",
+  "Modeling",       "Laughter",         "Rings",            "Dancing",
   "Night Lights",   "Forever",          "Bliss",            "Joy",
 ];
 

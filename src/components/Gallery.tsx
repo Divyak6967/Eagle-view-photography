@@ -3,23 +3,23 @@ import React, { useState } from "react";
 const row1 = [
   "/Images/Gallery/roleimg1.jpeg",
   "/Images/img1.jpg",
-  "/Images/img7.jpg",
+  "/Images/babyshower/couple-cover.jpg",
   "/Images/img3.jpg",
-  "/Images/img8.jpg",
+  "/Images/Modeling/EAGL2949.jpg",
   "/Images/img5.jpg",
 ];
 
 const row2 = [
   "/Images/img2.jpg",
-  "/Images/img9.jpg",
+  "/Images/Modeling/EAGL3062.jpg",
   "/Images/img4.jpg",
   "/Images/img7.jpg",
-  "/Images/img6.jpg",
+  "/Images/babyshower/EAGL2790.jpg",
   "/Images/img1.jpg",
 ];
 
-const labels1 = ["Wedding Day", "Golden Hour", "First Look", "Ceremony", "Bridal", "Candid"];
-const labels2 = ["Reception", "Love Story", "Details", "Portraits", "Together", "Forever"];
+const labels1 = ["Wedding Day", "Golden Hour", "Baby Shower", "Ceremony", "Modeling", "Candid"];
+const labels2 = ["Reception", "Modeling", "Details", "Portraits", "Baby Shower", "Forever"];
 
 const Gallery = () => {
   const [paused, setPaused] = useState<"row1" | "row2" | null>(null);

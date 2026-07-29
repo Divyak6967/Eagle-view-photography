@@ -6,10 +6,11 @@ import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import BabyShower from './pages/BabyShower';
+import BabyShowerStory from './pages/BabyShowerStory';
 import Birthday from './pages/Birthday';
 import Engagement from './pages/Engagement';
-import Maternity from './pages/Maternity';
 import Modeling from './pages/Modeling';
+import ModelingStory from './pages/ModelingStory';
 import Newborn from './pages/Newborn';
 import PreWedding from './pages/PreWedding';
 import Puperty from './pages/Puperty';
@@ -36,10 +37,11 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/babyshower" element={<BabyShower />} />
+        <Route path="/babyshower/:slug" element={<BabyShowerStory />} />
         <Route path="/birthday" element={<Birthday />} />
         <Route path="/engagement" element={<Engagement />} />
-        <Route path="/maternity" element={<Maternity />} />
         <Route path="/modeling" element={<Modeling />} />
+        <Route path="/modeling/:slug" element={<ModelingStory />} />
         <Route path="/newborn" element={<Newborn />} />
         <Route path="/prewedding" element={<PreWedding />} />
         <Route path="/puperty" element={<Puperty />} />

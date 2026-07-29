@@ -22,8 +22,7 @@ const Footer = () => {
     { label: 'Wedding Photography',  path: '/weddingservice' },
     { label: 'Pre-Wedding Shoots',   path: '/prewedding' },
     { label: 'Engagement Shoots',    path: '/engagement' },
-    { label: 'Maternity Shoots',     path: '/maternity' },
-    { label: 'Baby Shoots',          path: '/babyshower' },
+    { label: 'Baby Shower',          path: '/babyshower' },
     { label: 'Modelling Shoots',     path: '/modeling' },
   ];
 

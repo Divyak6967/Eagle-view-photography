@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaInstagram, FaWhatsapp, FaYoutube, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
 import { SiThreads } from 'react-icons/si';
 
-const SERVICES = ['Wedding', 'Engagement', 'Pre-Wedding', 'Maternity', 'Baby Shoot', 'Modelling'];
+const SERVICES = ['Wedding', 'Engagement', 'Pre-Wedding', 'Baby Shower', 'Modelling'];
 
 const ContactPage = () => {
   const [ready,       setReady]       = useState(false);

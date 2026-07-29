@@ -1,72 +1,114 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const galleryItems = [
-  { img: "/Images/img1.jpg", label: "Editorial",       span: "tall" },
-  { img: "/Images/img2.jpg", label: "Natural Light",   span: "normal" },
-  { img: "/Images/img4.jpg", label: "Haute Couture",   span: "normal" },
-  { img: "/Images/img3.jpg", label: "Golden Frame",    span: "wide" },
-  { img: "/Images/img4.jpg", label: "Fierce & Free",   span: "normal" },
-  { img: "/Images/img5.jpg", label: "Soft Drama",      span: "tall" },
-  { img: "/Images/img6.jpg", label: "Studio Art",      span: "normal" },
-  { img: "/Images/img1.jpg", label: "Silhouette",      span: "tall" },
-  { img: "/Images/img4.jpg", label: "Raw Beauty",      span: "normal" },
-  { img: "/Images/img2.jpg", label: "Candid Grace",    span: "normal" },
-  { img: "/Images/img4.jpg", label: "In the Light",    span: "normal" },
-  { img: "/Images/img3.jpg", label: "Urban Edge",      span: "wide" },
-  { img: "/Images/img4.jpg", label: "Vogue Moment",    span: "normal" },
-  { img: "/Images/img5.jpg", label: "Power Pose",      span: "tall" },
-  { img: "/Images/img3.jpg", label: "Ethereal",        span: "wide" },
-  { img: "/Images/img6.jpg", label: "True Form",       span: "normal" },
-  { img: "/Images/img4.jpg", label: "Timeless",        span: "normal" },
+// Each entry is one modeling story/theme. Add another entry here for a new
+// shoot — the story-card row scales to any number of stories (they wrap onto
+// new rows), and each card links to its own dedicated photo page at
+// /modeling/:slug so different shoots never mix on one page.
+export const stories = [
+  {
+    id: 0,
+    slug: "traditional-modeling",
+    name: "Traditional Modeling",
+    subtitle: "Confidence, attitude, expression — every frame tells a story without words",
+    cover: "/Images/Modeling/EAGL3062.jpg",
+    photos: [
+      { img: "/Images/Modeling/EAGL2949.jpg", label: "Editorial Muse", span: "tall" },
+      { img: "/Images/Modeling/EAGL2950.jpg", label: "Vogue Moment", span: "normal" },
+      { img: "/Images/Modeling/EAGL2951.jpg", label: "Golden Hour", span: "normal" },
+      { img: "/Images/Modeling/EAGL2952.jpg", label: "Studio Light", span: "wide" },
+      { img: "/Images/Modeling/EAGL2953.jpg", label: "Radiant Grace", span: "normal" },
+      { img: "/Images/Modeling/EAGL2954.jpg", label: "Silk & Shadow", span: "tall" },
+      { img: "/Images/Modeling/EAGL2955.jpg", label: "Poised Elegance", span: "normal" },
+      { img: "/Images/Modeling/EAGL2956.jpg", label: "Timeless Charm", span: "normal" },
+      { img: "/Images/Modeling/EAGL2959.jpg", label: "Fierce Spirit", span: "wide" },
+      { img: "/Images/Modeling/EAGL2960.jpg", label: "Modern Royalty", span: "tall" },
+      { img: "/Images/Modeling/EAGL2961.jpg", label: "Classic Frame", span: "normal" },
+      { img: "/Images/Modeling/EAGL2962.jpg", label: "Bold Statement", span: "normal" },
+      { img: "/Images/Modeling/EAGL2963.jpg", label: "Soft Focus", span: "tall" },
+      { img: "/Images/Modeling/EAGL2964.jpg", label: "Chic Portrait", span: "normal" },
+      { img: "/Images/Modeling/EAGL2966.jpg", label: "Regal Aura", span: "normal" },
+      { img: "/Images/Modeling/EAGL2967.jpg", label: "Effortless Style", span: "wide" },
+      { img: "/Images/Modeling/EAGL2968.jpg", label: "Runway Ready", span: "normal" },
+      { img: "/Images/Modeling/EAGL2969.jpg", label: "Captured Confidence", span: "tall" },
+      { img: "/Images/Modeling/EAGL2970.jpg", label: "True Elegance", span: "normal" },
+      { img: "/Images/Modeling/EAGL2971.jpg", label: "Graceful Pose", span: "normal" },
+      { img: "/Images/Modeling/EAGL2972.jpg", label: "Refined Beauty", span: "wide" },
+      { img: "/Images/Modeling/EAGL2973.jpg", label: "Statement Look", span: "tall" },
+      { img: "/Images/Modeling/EAGL2974.jpg", label: "Couture Dream", span: "normal" },
+      { img: "/Images/Modeling/EAGL2976.jpg", label: "Golden Muse", span: "normal" },
+      { img: "/Images/Modeling/EAGL2978.jpg", label: "Velvet Gaze", span: "tall" },
+      { img: "/Images/Modeling/EAGL2980.jpg", label: "Style Icon", span: "normal" },
+      { img: "/Images/Modeling/EAGL2981.jpg", label: "Poised Perfection", span: "normal" },
+      { img: "/Images/Modeling/EAGL2982.jpg", label: "Artistic Vision", span: "wide" },
+      { img: "/Images/Modeling/EAGL2992.jpg", label: "Natural Glow", span: "normal" },
+      { img: "/Images/Modeling/EAGL2993.jpg", label: "Studio Muse", span: "tall" },
+      { img: "/Images/Modeling/EAGL2999.jpg", label: "Glamour Shot", span: "normal" },
+      { img: "/Images/Modeling/EAGL3001.jpg", label: "Signature Look", span: "normal" },
+      { img: "/Images/Modeling/EAGL3002.jpg", label: "Ethereal Beauty", span: "wide" },
+      { img: "/Images/Modeling/EAGL3003.jpg", label: "Urban Chic", span: "tall" },
+      { img: "/Images/Modeling/EAGL3005.jpg", label: "Timeless Grace", span: "normal" },
+      { img: "/Images/Modeling/EAGL3006.jpg", label: "Vintage Charm", span: "normal" },
+      { img: "/Images/Modeling/EAGL3007.jpg", label: "Modern Muse", span: "tall" },
+      { img: "/Images/Modeling/EAGL3008.jpg", label: "Sculpted Light", span: "normal" },
+      { img: "/Images/Modeling/EAGL3009.jpg", label: "Dreamy Frame", span: "normal" },
+      { img: "/Images/Modeling/EAGL3010.jpg", label: "Radiant Pose", span: "wide" },
+      { img: "/Images/Modeling/EAGL3011.jpg", label: "Elegant Edge", span: "normal" },
+      { img: "/Images/Modeling/EAGL3013.jpg", label: "Fashion Forward", span: "tall" },
+      { img: "/Images/Modeling/EAGL3015.jpg", label: "Bold & Beautiful", span: "normal" },
+      { img: "/Images/Modeling/EAGL3016.jpg", label: "Serene Gaze", span: "normal" },
+      { img: "/Images/Modeling/EAGL3017.jpg", label: "Captivating Charm", span: "wide" },
+      { img: "/Images/Modeling/EAGL3025.jpg", label: "Poise & Power", span: "tall" },
+      { img: "/Images/Modeling/EAGL3026.jpg", label: "Golden Silhouette", span: "normal" },
+      { img: "/Images/Modeling/EAGL3028.jpg", label: "Chic & Sleek", span: "normal" },
+      { img: "/Images/Modeling/EAGL3029.jpg", label: "Delicate Drama", span: "tall" },
+      { img: "/Images/Modeling/EAGL3030.jpg", label: "Studio Story", span: "normal" },
+      { img: "/Images/Modeling/EAGL3031.jpg", label: "Portrait Perfection", span: "normal" },
+      { img: "/Images/Modeling/EAGL3032.jpg", label: "Grace in Motion", span: "wide" },
+      { img: "/Images/Modeling/EAGL3033.jpg", label: "Refined Muse", span: "normal" },
+      { img: "/Images/Modeling/EAGL3034.jpg", label: "Style Statement", span: "tall" },
+      { img: "/Images/Modeling/EAGL3035.jpg", label: "Classic Muse", span: "normal" },
+      { img: "/Images/Modeling/EAGL3037.jpg", label: "Modern Elegance", span: "normal" },
+      { img: "/Images/Modeling/EAGL3038.jpg", label: "Confident Charm", span: "wide" },
+      { img: "/Images/Modeling/EAGL3041.jpg", label: "Artful Frame", span: "tall" },
+      { img: "/Images/Modeling/EAGL3042.jpg", label: "Golden Grace", span: "normal" },
+      { img: "/Images/Modeling/EAGL3043.jpg", label: "Studio Glow", span: "normal" },
+      { img: "/Images/Modeling/EAGL3044.jpg", label: "Timeless Pose", span: "tall" },
+      { img: "/Images/Modeling/EAGL3045.jpg", label: "Fierce Grace", span: "normal" },
+      { img: "/Images/Modeling/EAGL3046.jpg", label: "Elegant Reverie", span: "normal" },
+      { img: "/Images/Modeling/EAGL3047.jpg", label: "Poised Muse", span: "wide" },
+      { img: "/Images/Modeling/EAGL3048.jpg", label: "True Radiance", span: "normal" },
+      { img: "/Images/Modeling/EAGL3049.jpg", label: "Style & Substance", span: "tall" },
+      { img: "/Images/Modeling/EAGL3050-2.jpg", label: "Captured Elegance", span: "normal" },
+      { img: "/Images/Modeling/EAGL3050.jpg", label: "Graceful Charm", span: "normal" },
+      { img: "/Images/Modeling/EAGL3051.jpg", label: "Vivid Portrait", span: "wide" },
+      { img: "/Images/Modeling/EAGL3052.jpg", label: "Studio Radiance", span: "tall" },
+      { img: "/Images/Modeling/EAGL3053.jpg", label: "Golden Reverie", span: "normal" },
+      { img: "/Images/Modeling/EAGL3054.jpg", label: "Chic Silhouette", span: "normal" },
+      { img: "/Images/Modeling/EAGL3055.jpg", label: "Modern Grace", span: "tall" },
+      { img: "/Images/Modeling/EAGL3056.jpg", label: "Effortless Charm", span: "normal" },
+      { img: "/Images/Modeling/EAGL3057.jpg", label: "Fashion Muse", span: "normal" },
+      { img: "/Images/Modeling/EAGL3058.jpg", label: "Refined Grace", span: "wide" },
+      { img: "/Images/Modeling/EAGL3059.jpg", label: "Classic Elegance", span: "normal" },
+      { img: "/Images/Modeling/EAGL3060.jpg", label: "Golden Portrait", span: "tall" },
+      { img: "/Images/Modeling/EAGL3061.jpg", label: "Studio Elegance", span: "normal" },
+      { img: "/Images/Modeling/EAGL3062.jpg", label: "Behind the Frame", span: "wide" },
+    ],
+  },
 ];
 
 const Page = () => {
+  const navigate = useNavigate();
   const [heroVisible, setHeroVisible] = useState(false);
-  const [lightbox, setLightbox]       = useState<number | null>(null);
-  const [lbAnim, setLbAnim]           = useState(false);
-  const [visible, setVisible]         = useState<Set<number>>(new Set());
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 80);
     return () => clearTimeout(t);
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => {
-        if (e.isIntersecting) {
-          const idx = Number((e.target as HTMLElement).dataset.index);
-          setVisible((prev) => new Set([...prev, idx]));
-        }
-      }),
-      { threshold: 0.08 }
-    );
-    itemRefs.current.forEach((r) => r && observer.observe(r));
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (lightbox === null) return;
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape")     setLightbox(null);
-      if (e.key === "ArrowRight") navLb(1);
-      if (e.key === "ArrowLeft")  navLb(-1);
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [lightbox]);
-
-  const openLb = (i: number) => {
-    setLightbox(i); setLbAnim(true);
-    setTimeout(() => setLbAnim(false), 400);
-  };
-  const navLb = (dir: 1 | -1, e?: React.MouseEvent) => {
-    e?.stopPropagation(); setLbAnim(true);
-    setTimeout(() => {
-      setLightbox((p) => p !== null ? (p + dir + galleryItems.length) % galleryItems.length : null);
-      setLbAnim(false);
-    }, 180);
+  const goToStory = (slug: string) => {
+    navigate(`/modeling/${slug}`);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -104,47 +146,48 @@ const Page = () => {
         </div>
       </div>
 
-      {/* ── SECTION LABEL ── */}
-      <div className="ms-section-label">
-        <span className="ms-lbl-line" />
-        <div className="ms-lbl-center">
-          <span className="ms-lbl-gem">✦</span>
-          <span className="ms-lbl-text">MOMENTS</span>
-          <span className="ms-lbl-gem">✦</span>
-        </div>
-        <span className="ms-lbl-line ms-lbl-line--r" />
-      </div>
-
-      {/* ── MASONRY GRID ── */}
-      <div className="ms-grid">
-        {galleryItems.map((item, i) => (
-          <div
-            key={i}
-            data-index={i}
-            ref={(el) => { itemRefs.current[i] = el; }}
-            className={`ms-item ms-item--${item.span} ${visible.has(i) ? "ms-item--visible" : ""}`}
-            style={{ transitionDelay: `${(i % 5) * 0.07}s` }}
-            onClick={() => openLb(i)}
-          >
-            <div className="ms-item-inner">
-              <img loading="lazy" decoding="async" src={item.img} alt={item.label} className="ms-img" />
-              <div className="ms-shimmer" />
-              <div className="ms-overlay">
-                <div className="ms-overlay-body">
-                  <span className="ms-overlay-num">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="ms-overlay-label">{item.label}</span>
-                  <span className="ms-overlay-bar" />
-                  <span className="ms-overlay-view">View Full &nbsp;↗</span>
-                </div>
-              </div>
-              <span className="ms-corner ms-tl" />
-              <span className="ms-corner ms-tr" />
-              <span className="ms-corner ms-bl" />
-              <span className="ms-corner ms-br" />
-              <div className="ms-top-bar" />
-            </div>
+      {/* ── STORY CARDS ── */}
+      <div className="ms-fam-section">
+        <div className="ms-section-label">
+          <span className="ms-lbl-line" />
+          <div className="ms-lbl-center">
+            <span className="ms-lbl-gem">✦</span>
+            <span className="ms-lbl-text">MODELING STORIES</span>
+            <span className="ms-lbl-gem">✦</span>
           </div>
-        ))}
+          <span className="ms-lbl-line ms-lbl-line--r" />
+        </div>
+
+        <div className="ms-fam-row">
+          {stories.map((s) => (
+            <div
+              key={s.id}
+              className="ms-fam-card"
+              onClick={() => goToStory(s.slug)}
+            >
+              <div className="ms-fam-media">
+                <img loading="lazy" decoding="async" src={s.cover} alt={s.name} className="ms-fam-img" />
+                <div className="ms-fam-media-overlay" />
+              </div>
+              <div className="ms-fam-body">
+                <p className="ms-fam-eyebrow">
+                  <span className="ms-fam-dot" />
+                  MODELING STORY
+                </p>
+                <h3 className="ms-fam-name">{s.name}</h3>
+                <div className="ms-fam-rule">
+                  <span className="ms-fam-rule-line" />
+                  <span className="ms-fam-rule-gem" />
+                </div>
+                <p className="ms-fam-sub">{s.subtitle}</p>
+                <button className="ms-fam-btn" onClick={(e) => { e.stopPropagation(); goToStory(s.slug); }}>
+                  <span>VIEW PHOTOS</span>
+                  <span className="ms-fam-btn-arrow">→</span>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* ── FOOTER ORNAMENT ── */}
@@ -155,56 +198,6 @@ const Page = () => {
         <span className="ms-fo-gem">✦</span>
         <span className="ms-fo-line" />
       </div>
-
-      {/* ── LIGHTBOX ── */}
-      {lightbox !== null && (
-        <div className="ms-lb" onClick={() => setLightbox(null)}>
-          <div className="ms-lb-topbar">
-            <span className="ms-lb-top-label">{galleryItems[lightbox].label}</span>
-            <span className="ms-lb-top-count">
-              {String(lightbox + 1).padStart(2, "0")}
-              <span className="ms-lb-top-sep"> / </span>
-              {String(galleryItems.length).padStart(2, "0")}
-            </span>
-          </div>
-          <button className="ms-lb-close" onClick={() => setLightbox(null)}>
-            <span className="ms-lb-x" /><span className="ms-lb-x" />
-          </button>
-          <button className="ms-lb-nav ms-lb-prev" onClick={(e) => navLb(-1, e)}>
-            <span className="ms-lb-arrow">‹</span>
-          </button>
-          <div className={`ms-lb-frame ${lbAnim ? "ms-lb-frame--anim" : ""}`} onClick={(e) => e.stopPropagation()}>
-            <div className="ms-lb-img-wrap">
-              <img loading="lazy" decoding="async" src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="ms-lb-img" />
-              <span className="ms-lb-corner ms-lb-tl" />
-              <span className="ms-lb-corner ms-lb-tr" />
-              <span className="ms-lb-corner ms-lb-bl" />
-              <span className="ms-lb-corner ms-lb-br" />
-            </div>
-            <div className="ms-lb-caption">
-              <div className="ms-lb-cap-left">
-                <span className="ms-lb-num">{String(lightbox + 1).padStart(2, "0")}</span>
-                <div className="ms-lb-cap-div" />
-                <div className="ms-lb-cap-info">
-                  <span className="ms-lb-label">{galleryItems[lightbox].label}</span>
-                  <span className="ms-lb-sub">Eagle View Photography</span>
-                </div>
-              </div>
-              <div className="ms-lb-dots">
-                {galleryItems.map((_, di) => (
-                  <button key={di}
-                    className={`ms-lb-dot ${di === lightbox ? "ms-lb-dot--active" : ""}`}
-                    onClick={(e) => { e.stopPropagation(); openLb(di); }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-          <button className="ms-lb-nav ms-lb-next" onClick={(e) => navLb(1, e)}>
-            <span className="ms-lb-arrow">›</span>
-          </button>
-        </div>
-      )}
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
@@ -263,36 +256,27 @@ const Page = () => {
         .ms-lbl-gem{font-size:0.38rem;color:var(--g-primary);opacity:0.6}
         .ms-lbl-text{font-size:0.58rem;letter-spacing:0.55em;color:rgba(255,255,255,0.35);font-weight:600}
 
-        /* GRID */
-        .ms-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:5px;padding:0 2.5rem 3rem;max-width:1600px;margin:0 auto}
-        .ms-item{opacity:0;transform:translateY(28px) scale(0.97);transition:opacity 0.65s ease,transform 0.65s ease;cursor:pointer}
-        .ms-item--visible{opacity:1;transform:translateY(0) scale(1)}
-        .ms-item--tall{grid-row:span 2}
-        .ms-item--wide{grid-column:span 2}
-        .ms-item-inner{position:relative;width:100%;height:100%;overflow:hidden}
-        .ms-img{width:100%;height:100%;object-fit:cover;transition:transform 0.75s cubic-bezier(0.25,0.46,0.45,0.94),filter 0.5s ease;filter:brightness(0.82) sepia(0.08)}
-        .ms-item-inner:hover .ms-img{transform:scale(1.07);filter:brightness(0.5) sepia(0.05)}
-
-        .ms-shimmer{position:absolute;inset:0;background:linear-gradient(110deg,transparent 38%,rgba(201,168,76,0.07) 50%,transparent 62%);transform:translateX(-100%);pointer-events:none}
-        .ms-item-inner:hover .ms-shimmer{transform:translateX(100%);transition:transform 0.75s ease}
-
-        .ms-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;padding:1.3rem 1.5rem;background:linear-gradient(to top,rgba(8,6,4,0.78) 0%,transparent 58%);opacity:0;transition:opacity 0.4s ease}
-        .ms-item-inner:hover .ms-overlay{opacity:1}
-        .ms-overlay-body{display:flex;flex-direction:column;gap:0.28rem;transform:translateY(10px);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1)}
-        .ms-item-inner:hover .ms-overlay-body{transform:translateY(0)}
-        .ms-overlay-num{font-size:0.52rem;letter-spacing:0.4em;color:var(--g-primary);font-weight:600}
-        .ms-overlay-label{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff;font-style:italic;font-weight:300}
-        .ms-overlay-bar{display:block;width:28px;height:1px;background:linear-gradient(90deg,var(--g-primary),var(--g-light));box-shadow:0 0 5px var(--g-glow-sm)}
-        .ms-overlay-view{font-size:0.56rem;letter-spacing:0.18em;color:rgba(255,255,255,0.52)}
-
-        .ms-corner{position:absolute;width:0;height:0;border-style:solid;border-color:transparent;transition:width 0.35s ease,height 0.35s ease,border-color 0.35s ease;pointer-events:none}
-        .ms-tl{top:0;left:0;border-width:1.5px 0 0 1.5px}
-        .ms-tr{top:0;right:0;border-width:1.5px 1.5px 0 0}
-        .ms-bl{bottom:0;left:0;border-width:0 0 1.5px 1.5px}
-        .ms-br{bottom:0;right:0;border-width:0 1.5px 1.5px 0}
-        .ms-item-inner:hover .ms-corner{width:22px;height:22px;border-color:var(--g-primary);filter:drop-shadow(0 0 4px rgba(201,168,76,0.8))}
-        .ms-top-bar{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g-primary),transparent);box-shadow:0 0 10px var(--g-glow);opacity:0;transition:opacity 0.4s ease}
-        .ms-item-inner:hover .ms-top-bar{opacity:1}
+        /* STORY CARDS (one editorial card per story; wraps to a new row as more are added) */
+        .ms-fam-section{padding-bottom:0.5rem}
+        .ms-fam-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:1.8rem;max-width:1200px;margin:0 auto;padding:0 2.5rem 4rem}
+        .ms-fam-card{position:relative;display:flex;width:100%;max-width:900px;min-height:340px;background:#0e0b07;border:1px solid rgba(201,168,76,0.18);cursor:pointer;overflow:hidden;transition:border-color 0.4s ease,transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s ease}
+        .ms-fam-card:hover{border-color:rgba(201,168,76,0.55);transform:translateY(-6px);box-shadow:0 26px 60px rgba(0,0,0,0.55),0 0 34px rgba(201,168,76,0.07)}
+        .ms-fam-media{position:relative;width:42%;flex-shrink:0;overflow:hidden}
+        .ms-fam-img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);filter:brightness(0.9) sepia(0.03)}
+        .ms-fam-card:hover .ms-fam-img{transform:scale(1.07)}
+        .ms-fam-media-overlay{position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,rgba(14,11,7,0.55) 100%)}
+        .ms-fam-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:1rem;padding:2.8rem 3.2rem;min-width:0}
+        .ms-fam-eyebrow{display:flex;align-items:center;gap:0.6rem;font-size:0.62rem;font-weight:600;letter-spacing:0.4em;color:#fff}
+        .ms-fam-dot{width:6px;height:6px;border-radius:50%;background:var(--g-primary);box-shadow:0 0 10px var(--g-glow);flex-shrink:0}
+        .ms-fam-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.4vw,2.8rem);font-weight:300;font-style:italic;color:#fff;line-height:1.15}
+        .ms-fam-rule{display:flex;align-items:center;gap:0.6rem}
+        .ms-fam-rule-line{width:46px;height:1px;background:linear-gradient(90deg,var(--g-primary),transparent)}
+        .ms-fam-rule-gem{width:5px;height:5px;background:var(--g-primary);transform:rotate(45deg);box-shadow:0 0 8px var(--g-glow)}
+        .ms-fam-sub{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;font-weight:300;color:rgba(255,255,255,0.65)}
+        .ms-fam-btn{position:relative;display:inline-flex;align-items:center;gap:0.8rem;padding:0.85rem 1.9rem;background:transparent;border:1px solid rgba(201,168,76,0.35);color:#fff;font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.3em;cursor:pointer;transition:border-color 0.3s,background 0.3s;width:fit-content;margin-top:0.4rem}
+        .ms-fam-btn:hover{border-color:var(--g-primary);background:rgba(201,168,76,0.08)}
+        .ms-fam-btn-arrow{color:var(--g-primary);transition:transform 0.3s;display:inline-block}
+        .ms-fam-btn:hover .ms-fam-btn-arrow{transform:translateX(4px)}
 
         /* FOOTER */
         .ms-footer-orn{display:flex;align-items:center;justify-content:center;gap:1rem;padding:2.5rem 3rem 4rem}
@@ -300,60 +284,18 @@ const Page = () => {
         .ms-fo-gem{font-size:0.38rem;color:var(--g-deep);opacity:0.6}
         .ms-fo-text{font-family:'Cormorant Garamond',serif;font-size:clamp(0.9rem,1.5vw,1rem);font-style:italic;font-weight:300;color:rgba(255,255,255,0.22);letter-spacing:0.06em}
 
-        /* LIGHTBOX */
-        .ms-lb{position:fixed;inset:0;background:rgba(4,3,2,0.97);z-index:2000;display:flex;align-items:center;justify-content:center;animation:ms-lb-in 0.35s ease;backdrop-filter:blur(12px)}
-        @keyframes ms-lb-in{from{opacity:0}to{opacity:1}}
-        .ms-lb-topbar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid rgba(201,168,76,0.1);background:rgba(8,6,4,0.6);backdrop-filter:blur(10px)}
-        .ms-lb-top-label{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;font-weight:300;color:rgba(255,255,255,0.6)}
-        .ms-lb-top-count{font-size:0.7rem;font-weight:600;letter-spacing:0.2em;color:var(--g-primary)}
-        .ms-lb-top-sep{color:rgba(201,168,76,0.3)}
-        .ms-lb-close{position:absolute;top:1rem;right:1.8rem;width:36px;height:36px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);cursor:pointer;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background 0.3s,border-color 0.3s}
-        .ms-lb-close:hover{background:rgba(201,168,76,0.15);border-color:var(--g-primary)}
-        .ms-lb-x{display:block;width:16px;height:1.5px;background:rgba(255,255,255,0.7);transition:background 0.3s}
-        .ms-lb-x:first-child{transform:rotate(45deg) translate(1px,1px)}
-        .ms-lb-x:last-child{transform:rotate(-45deg) translate(1px,-1px)}
-        .ms-lb-close:hover .ms-lb-x{background:var(--g-light)}
-        .ms-lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(8,6,4,0.7);border:1px solid rgba(201,168,76,0.2);width:52px;height:80px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:border-color 0.3s,background 0.3s}
-        .ms-lb-nav:hover{border-color:var(--g-primary);background:rgba(201,168,76,0.08)}
-        .ms-lb-arrow{font-size:2.2rem;color:rgba(255,255,255,0.5);transition:color 0.3s,transform 0.3s;line-height:1}
-        .ms-lb-nav:hover .ms-lb-arrow{color:var(--g-light)}
-        .ms-lb-prev{left:1rem}
-        .ms-lb-prev:hover .ms-lb-arrow{transform:translateX(-3px)}
-        .ms-lb-next{right:1rem}
-        .ms-lb-next:hover .ms-lb-arrow{transform:translateX(3px)}
-        .ms-lb-frame{display:flex;flex-direction:column;align-items:center;max-width:82vw;max-height:88vh;animation:ms-lb-scale 0.38s cubic-bezier(0.34,1.4,0.64,1)}
-        .ms-lb-frame--anim{animation:ms-lb-switch 0.22s ease}
-        @keyframes ms-lb-scale{from{transform:scale(0.9);opacity:0}to{transform:scale(1);opacity:1}}
-        @keyframes ms-lb-switch{0%{opacity:1;transform:scale(1)}50%{opacity:0;transform:scale(0.96)}100%{opacity:1;transform:scale(1)}}
-        .ms-lb-img-wrap{position:relative;display:flex}
-        .ms-lb-img{max-width:100%;max-height:72vh;object-fit:contain;border:1px solid rgba(201,168,76,0.15);display:block}
-        .ms-lb-corner{position:absolute;width:20px;height:20px;border-style:solid;border-color:var(--g-primary);opacity:0.7;pointer-events:none}
-        .ms-lb-tl{top:-4px;left:-4px;border-width:1.5px 0 0 1.5px}
-        .ms-lb-tr{top:-4px;right:-4px;border-width:1.5px 1.5px 0 0}
-        .ms-lb-bl{bottom:-4px;left:-4px;border-width:0 0 1.5px 1.5px}
-        .ms-lb-br{bottom:-4px;right:-4px;border-width:0 1.5px 1.5px 0}
-        .ms-lb-caption{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:1.4rem;padding:0 0.2rem;gap:1rem}
-        .ms-lb-cap-left{display:flex;align-items:center;gap:1rem}
-        .ms-lb-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:rgba(201,168,76,0.2);line-height:1}
-        .ms-lb-cap-div{width:1px;height:32px;background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.3),transparent)}
-        .ms-lb-cap-info{display:flex;flex-direction:column;gap:0.2rem}
-        .ms-lb-label{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;font-weight:300;color:rgba(255,255,255,0.85)}
-        .ms-lb-sub{font-size:0.55rem;letter-spacing:0.3em;color:rgba(201,168,76,0.5)}
-        .ms-lb-dots{display:flex;gap:0.3rem;flex-wrap:wrap;max-width:200px;justify-content:flex-end}
-        .ms-lb-dot{width:5px;height:5px;border-radius:50%;border:none;background:rgba(255,255,255,0.12);cursor:pointer;transition:background 0.3s,transform 0.3s}
-        .ms-lb-dot--active{background:var(--g-primary);transform:scale(1.4);box-shadow:0 0 5px var(--g-glow-sm)}
-
         /* RESPONSIVE */
-        @media (max-width:900px){
-          .ms-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px;padding:0 1.5rem 3rem}
-          .ms-lb-dots{display:none}
+        @media (max-width:900px) and (min-width:561px){
+          .ms-fam-card{flex-direction:column;max-width:520px;min-height:0}
+          .ms-fam-media{width:100%;height:260px}
+          .ms-fam-body{padding:2.2rem 2.2rem}
         }
         @media (max-width:560px){
-          .ms-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px;gap:3px;padding:0 0.8rem 2.5rem}
           .ms-section-label{padding:2.5rem 1.5rem 1.5rem}
-          .ms-lb-prev{left:0.3rem}.ms-lb-next{right:0.3rem}
-          .ms-lb-frame{max-width:94vw}
-          .ms-lb-num,.ms-lb-cap-div{display:none}
+          .ms-fam-row{flex-direction:column;align-items:stretch;padding:0 1.2rem 2.5rem}
+          .ms-fam-card{max-width:100%;flex-direction:column;min-height:0}
+          .ms-fam-media{width:100%;height:220px}
+          .ms-fam-body{padding:2rem 1.6rem}
         }
       `}</style>
     </div>

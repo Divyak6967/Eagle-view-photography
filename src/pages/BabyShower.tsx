@@ -1,72 +1,55 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const galleryItems = [
-  { img: "/Images/img1.jpg", label: "Tiny Miracle",    span: "tall" },
-  { img: "/Images/img2.jpg", label: "First Smile",     span: "normal" },
-  { img: "/Images/img4.jpg", label: "Dreaming Away",   span: "normal" },
-  { img: "/Images/img3.jpg", label: "Little Hands",    span: "wide" },
-  { img: "/Images/img4.jpg", label: "Sweet Slumber",   span: "normal" },
-  { img: "/Images/img5.jpg", label: "Bundle of Joy",   span: "tall" },
-  { img: "/Images/img6.jpg", label: "Newborn Bliss",   span: "normal" },
-  { img: "/Images/img1.jpg", label: "Soft & Warm",     span: "tall" },
-  { img: "/Images/img4.jpg", label: "Tiny Toes",       span: "normal" },
-  { img: "/Images/img2.jpg", label: "Pure Innocence",  span: "normal" },
-  { img: "/Images/img4.jpg", label: "Wrapped in Love", span: "normal" },
-  { img: "/Images/img3.jpg", label: "Golden Light",    span: "wide" },
-  { img: "/Images/img4.jpg", label: "Hello World",     span: "normal" },
-  { img: "/Images/img5.jpg", label: "Cherished",       span: "tall" },
-  { img: "/Images/img3.jpg", label: "Forever Loved",   span: "wide" },
-  { img: "/Images/img6.jpg", label: "Snuggle Time",    span: "normal" },
-  { img: "/Images/img4.jpg", label: "Our Greatest Gift", span: "normal" },
+// Each entry is one family's baby shower story. Add another entry here when a
+// new client is added — the story-card row scales to any number of families
+// (they wrap onto new rows), and each card links to its own dedicated photo
+// page at /babyshower/:slug so different families never mix on one page.
+export const families = [
+  {
+    id: 0,
+    slug: "benilo-sharmi",
+    name: "Benilo & Sharmi",
+    subtitle: "Hello, tiny miracle — the sweetest chapter begins",
+    cover: "/Images/babyshower/couple-cover.jpg",
+    photos: [
+      { img: "/Images/babyshower/EAGL2777.jpg", label: "Tiny Miracle" },
+      { img: "/Images/babyshower/EAGL2787.jpg", label: "Pure Innocence" },
+      { img: "/Images/babyshower/EAGL2778.jpg", label: "First Smile" },
+      { img: "/Images/babyshower/EAGL2788.jpg", label: "Wrapped in Love" },
+      { img: "/Images/babyshower/EAGL2779.jpg", label: "Dreaming Away" },
+      { img: "/Images/babyshower/EAGL2789.jpg", label: "Golden Light" },
+      { img: "/Images/babyshower/EAGL2780.jpg", label: "Little Hands" },
+      { img: "/Images/babyshower/EAGL2790.jpg", label: "Hello World" },
+      { img: "/Images/babyshower/EAGL2782.jpg", label: "Sweet Slumber" },
+      { img: "/Images/babyshower/EAGL2791.jpg", label: "Cherished" },
+      { img: "/Images/babyshower/EAGL2783.jpg", label: "Bundle of Joy" },
+      { img: "/Images/babyshower/EAGL2792.jpg", label: "Forever Loved" },
+      { img: "/Images/babyshower/EAGL2784.jpg", label: "Newborn Bliss" },
+      { img: "/Images/babyshower/EAGL2793.jpg", label: "Snuggle Time" },
+      { img: "/Images/babyshower/EAGL2785.jpg", label: "Soft & Warm" },
+      { img: "/Images/babyshower/EAGL2794.jpg", label: "Our Greatest Gift" },
+      { img: "/Images/babyshower/EAGL2786.jpg", label: "Tiny Toes" },
+      { img: "/Images/babyshower/6.jpg", label: "Hello, Tiny Miracle" },
+      { img: "/Images/babyshower/1.jpg", label: "The Sweetest Chapter" },
+      { img: "/Images/babyshower/5.jpg", label: "Tiny Kicks, Full Hearts" },
+      { img: "/Images/babyshower/2.jpg", label: "Carried With Love" },
+    ],
+  },
 ];
 
 const Page = () => {
+  const navigate = useNavigate();
   const [heroVisible, setHeroVisible] = useState(false);
-  const [lightbox, setLightbox]       = useState<number | null>(null);
-  const [lbAnim, setLbAnim]           = useState(false);
-  const [visible, setVisible]         = useState<Set<number>>(new Set());
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 80);
     return () => clearTimeout(t);
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => {
-        if (e.isIntersecting) {
-          const idx = Number((e.target as HTMLElement).dataset.index);
-          setVisible((prev) => new Set([...prev, idx]));
-        }
-      }),
-      { threshold: 0.08 }
-    );
-    itemRefs.current.forEach((r) => r && observer.observe(r));
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (lightbox === null) return;
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape")     setLightbox(null);
-      if (e.key === "ArrowRight") navLb(1);
-      if (e.key === "ArrowLeft")  navLb(-1);
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [lightbox]);
-
-  const openLb = (i: number) => {
-    setLightbox(i); setLbAnim(true);
-    setTimeout(() => setLbAnim(false), 400);
-  };
-  const navLb = (dir: 1 | -1, e?: React.MouseEvent) => {
-    e?.stopPropagation(); setLbAnim(true);
-    setTimeout(() => {
-      setLightbox((p) => p !== null ? (p + dir + galleryItems.length) % galleryItems.length : null);
-      setLbAnim(false);
-    }, 180);
+  const goToFamily = (slug: string) => {
+    navigate(`/babyshower/${slug}`);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -74,7 +57,7 @@ const Page = () => {
 
       {/* ── HERO ── */}
       <div className={`bb-hero ${heroVisible ? "bb-hero--visible" : ""}`}>
-        <img loading="lazy" decoding="async" src="/Images/Backgrounds/background.jpg" alt="Baby Shoots" className="bb-hero-img" />
+        <img loading="lazy" decoding="async" src="/Images/Backgrounds/background.jpg" alt="Baby shower" className="bb-hero-img" />
         <div className="bb-hero-overlay" />
 
         <div className="bb-particles" aria-hidden="true">
@@ -87,7 +70,7 @@ const Page = () => {
             EAGLE-VIEW PICTURES
             <span className="bb-ey-line bb-ey-line--r" />
           </p>
-          <h1 className="bb-hero-title">Baby Shoots</h1>
+          <h1 className="bb-hero-title">Baby shower</h1>
           <div className="bb-hero-rule">
             <span className="bb-rule-line" />
             <span className="bb-rule-gem" />
@@ -104,47 +87,48 @@ const Page = () => {
         </div>
       </div>
 
-      {/* ── SECTION LABEL ── */}
-      <div className="bb-section-label">
-        <span className="bb-lbl-line" />
-        <div className="bb-lbl-center">
-          <span className="bb-lbl-gem">✦</span>
-          <span className="bb-lbl-text">MOMENTS</span>
-          <span className="bb-lbl-gem">✦</span>
-        </div>
-        <span className="bb-lbl-line bb-lbl-line--r" />
-      </div>
-
-      {/* ── MASONRY GRID ── */}
-      <div className="bb-grid">
-        {galleryItems.map((item, i) => (
-          <div
-            key={i}
-            data-index={i}
-            ref={(el) => { itemRefs.current[i] = el; }}
-            className={`bb-item bb-item--${item.span} ${visible.has(i) ? "bb-item--visible" : ""}`}
-            style={{ transitionDelay: `${(i % 5) * 0.07}s` }}
-            onClick={() => openLb(i)}
-          >
-            <div className="bb-item-inner">
-              <img loading="lazy" decoding="async" src={item.img} alt={item.label} className="bb-img" />
-              <div className="bb-shimmer" />
-              <div className="bb-overlay">
-                <div className="bb-overlay-body">
-                  <span className="bb-overlay-num">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="bb-overlay-label">{item.label}</span>
-                  <span className="bb-overlay-bar" />
-                  <span className="bb-overlay-view">View Full &nbsp;↗</span>
-                </div>
-              </div>
-              <span className="bb-corner bb-tl" />
-              <span className="bb-corner bb-tr" />
-              <span className="bb-corner bb-bl" />
-              <span className="bb-corner bb-br" />
-              <div className="bb-top-bar" />
-            </div>
+      {/* ── FAMILY STORY CARDS ── */}
+      <div className="bb-fam-section">
+        <div className="bb-section-label">
+          <span className="bb-lbl-line" />
+          <div className="bb-lbl-center">
+            <span className="bb-lbl-gem">✦</span>
+            <span className="bb-lbl-text">BABY SHOWER STORIES</span>
+            <span className="bb-lbl-gem">✦</span>
           </div>
-        ))}
+          <span className="bb-lbl-line bb-lbl-line--r" />
+        </div>
+
+        <div className="bb-fam-row">
+          {families.map((f) => (
+            <div
+              key={f.id}
+              className="bb-fam-card"
+              onClick={() => goToFamily(f.slug)}
+            >
+              <div className="bb-fam-media">
+                <img loading="lazy" decoding="async" src={f.cover} alt={f.name} className="bb-fam-img" />
+                <div className="bb-fam-media-overlay" />
+              </div>
+              <div className="bb-fam-body">
+                <p className="bb-fam-eyebrow">
+                  <span className="bb-fam-dot" />
+                  BABY SHOWER STORY
+                </p>
+                <h3 className="bb-fam-name">{f.name}</h3>
+                <div className="bb-fam-rule">
+                  <span className="bb-fam-rule-line" />
+                  <span className="bb-fam-rule-gem" />
+                </div>
+                <p className="bb-fam-sub">{f.subtitle}</p>
+                <button className="bb-fam-btn" onClick={(e) => { e.stopPropagation(); goToFamily(f.slug); }}>
+                  <span>VIEW PHOTOS</span>
+                  <span className="bb-fam-btn-arrow">→</span>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* ── FOOTER ORNAMENT ── */}
@@ -155,56 +139,6 @@ const Page = () => {
         <span className="bb-fo-gem">✦</span>
         <span className="bb-fo-line" />
       </div>
-
-      {/* ── LIGHTBOX ── */}
-      {lightbox !== null && (
-        <div className="bb-lb" onClick={() => setLightbox(null)}>
-          <div className="bb-lb-topbar">
-            <span className="bb-lb-top-label">{galleryItems[lightbox].label}</span>
-            <span className="bb-lb-top-count">
-              {String(lightbox + 1).padStart(2, "0")}
-              <span className="bb-lb-top-sep"> / </span>
-              {String(galleryItems.length).padStart(2, "0")}
-            </span>
-          </div>
-          <button className="bb-lb-close" onClick={() => setLightbox(null)}>
-            <span className="bb-lb-x" /><span className="bb-lb-x" />
-          </button>
-          <button className="bb-lb-nav bb-lb-prev" onClick={(e) => navLb(-1, e)}>
-            <span className="bb-lb-arrow">‹</span>
-          </button>
-          <div className={`bb-lb-frame ${lbAnim ? "bb-lb-frame--anim" : ""}`} onClick={(e) => e.stopPropagation()}>
-            <div className="bb-lb-img-wrap">
-              <img loading="lazy" decoding="async" src={galleryItems[lightbox].img} alt={galleryItems[lightbox].label} className="bb-lb-img" />
-              <span className="bb-lb-corner bb-lb-tl" />
-              <span className="bb-lb-corner bb-lb-tr" />
-              <span className="bb-lb-corner bb-lb-bl" />
-              <span className="bb-lb-corner bb-lb-br" />
-            </div>
-            <div className="bb-lb-caption">
-              <div className="bb-lb-cap-left">
-                <span className="bb-lb-num">{String(lightbox + 1).padStart(2, "0")}</span>
-                <div className="bb-lb-cap-div" />
-                <div className="bb-lb-cap-info">
-                  <span className="bb-lb-label">{galleryItems[lightbox].label}</span>
-                  <span className="bb-lb-sub">Eagle View Photography</span>
-                </div>
-              </div>
-              <div className="bb-lb-dots">
-                {galleryItems.map((_, di) => (
-                  <button key={di}
-                    className={`bb-lb-dot ${di === lightbox ? "bb-lb-dot--active" : ""}`}
-                    onClick={(e) => { e.stopPropagation(); openLb(di); }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-          <button className="bb-lb-nav bb-lb-next" onClick={(e) => navLb(1, e)}>
-            <span className="bb-lb-arrow">›</span>
-          </button>
-        </div>
-      )}
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
@@ -263,33 +197,27 @@ const Page = () => {
         .bb-lbl-gem{font-size:0.38rem;color:var(--g-primary);opacity:0.6}
         .bb-lbl-text{font-size:0.58rem;letter-spacing:0.55em;color:rgba(255,255,255,0.35);font-weight:600}
 
-        /* GRID */
-        .bb-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:5px;padding:0 2.5rem 3rem;max-width:1600px;margin:0 auto}
-        .bb-item{opacity:0;transform:translateY(28px) scale(0.97);transition:opacity 0.65s ease,transform 0.65s ease;cursor:pointer}
-        .bb-item--visible{opacity:1;transform:translateY(0) scale(1)}
-        .bb-item--tall{grid-row:span 2}
-        .bb-item--wide{grid-column:span 2}
-        .bb-item-inner{position:relative;width:100%;height:100%;overflow:hidden}
-        .bb-img{width:100%;height:100%;object-fit:cover;transition:transform 0.75s cubic-bezier(0.25,0.46,0.45,0.94),filter 0.5s ease;filter:brightness(0.82) sepia(0.08)}
-        .bb-item-inner:hover .bb-img{transform:scale(1.07);filter:brightness(0.5) sepia(0.05)}
-        .bb-shimmer{position:absolute;inset:0;background:linear-gradient(110deg,transparent 38%,rgba(201,168,76,0.07) 50%,transparent 62%);transform:translateX(-100%);pointer-events:none}
-        .bb-item-inner:hover .bb-shimmer{transform:translateX(100%);transition:transform 0.75s ease}
-        .bb-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;padding:1.3rem 1.5rem;background:linear-gradient(to top,rgba(8,6,4,0.78) 0%,transparent 58%);opacity:0;transition:opacity 0.4s ease}
-        .bb-item-inner:hover .bb-overlay{opacity:1}
-        .bb-overlay-body{display:flex;flex-direction:column;gap:0.28rem;transform:translateY(10px);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1)}
-        .bb-item-inner:hover .bb-overlay-body{transform:translateY(0)}
-        .bb-overlay-num{font-size:0.52rem;letter-spacing:0.4em;color:var(--g-primary);font-weight:600}
-        .bb-overlay-label{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff;font-style:italic;font-weight:300}
-        .bb-overlay-bar{display:block;width:28px;height:1px;background:linear-gradient(90deg,var(--g-primary),var(--g-light));box-shadow:0 0 5px var(--g-glow-sm)}
-        .bb-overlay-view{font-size:0.56rem;letter-spacing:0.18em;color:rgba(255,255,255,0.52)}
-        .bb-corner{position:absolute;width:0;height:0;border-style:solid;border-color:transparent;transition:width 0.35s ease,height 0.35s ease,border-color 0.35s ease;pointer-events:none}
-        .bb-tl{top:0;left:0;border-width:1.5px 0 0 1.5px}
-        .bb-tr{top:0;right:0;border-width:1.5px 1.5px 0 0}
-        .bb-bl{bottom:0;left:0;border-width:0 0 1.5px 1.5px}
-        .bb-br{bottom:0;right:0;border-width:0 1.5px 1.5px 0}
-        .bb-item-inner:hover .bb-corner{width:22px;height:22px;border-color:var(--g-primary);filter:drop-shadow(0 0 4px rgba(201,168,76,0.8))}
-        .bb-top-bar{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g-primary),transparent);box-shadow:0 0 10px var(--g-glow);opacity:0;transition:opacity 0.4s ease}
-        .bb-item-inner:hover .bb-top-bar{opacity:1}
+        /* FAMILY STORY CARDS (one editorial card per family; wraps to a new row as more are added) */
+        .bb-fam-section{padding-bottom:0.5rem}
+        .bb-fam-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:1.8rem;max-width:1200px;margin:0 auto;padding:0 2.5rem 4rem}
+        .bb-fam-card{position:relative;display:flex;width:100%;max-width:900px;min-height:340px;background:#0e0b07;border:1px solid rgba(201,168,76,0.18);cursor:pointer;overflow:hidden;transition:border-color 0.4s ease,transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s ease}
+        .bb-fam-card:hover{border-color:rgba(201,168,76,0.55);transform:translateY(-6px);box-shadow:0 26px 60px rgba(0,0,0,0.55),0 0 34px rgba(201,168,76,0.07)}
+        .bb-fam-media{position:relative;width:42%;flex-shrink:0;overflow:hidden}
+        .bb-fam-img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);filter:brightness(0.88) sepia(0.05)}
+        .bb-fam-card:hover .bb-fam-img{transform:scale(1.07)}
+        .bb-fam-media-overlay{position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,rgba(14,11,7,0.55) 100%)}
+        .bb-fam-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:1rem;padding:2.8rem 3.2rem;min-width:0}
+        .bb-fam-eyebrow{display:flex;align-items:center;gap:0.6rem;font-size:0.62rem;font-weight:600;letter-spacing:0.4em;color:#fff}
+        .bb-fam-dot{width:6px;height:6px;border-radius:50%;background:var(--g-primary);box-shadow:0 0 10px var(--g-glow);flex-shrink:0}
+        .bb-fam-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.4vw,2.8rem);font-weight:300;font-style:italic;color:#fff;line-height:1.15}
+        .bb-fam-rule{display:flex;align-items:center;gap:0.6rem}
+        .bb-fam-rule-line{width:46px;height:1px;background:linear-gradient(90deg,var(--g-primary),transparent)}
+        .bb-fam-rule-gem{width:5px;height:5px;background:var(--g-primary);transform:rotate(45deg);box-shadow:0 0 8px var(--g-glow)}
+        .bb-fam-sub{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;font-weight:300;color:rgba(255,255,255,0.65)}
+        .bb-fam-btn{position:relative;display:inline-flex;align-items:center;gap:0.8rem;padding:0.85rem 1.9rem;background:transparent;border:1px solid rgba(201,168,76,0.35);color:#fff;font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.3em;cursor:pointer;transition:border-color 0.3s,background 0.3s;width:fit-content;margin-top:0.4rem}
+        .bb-fam-btn:hover{border-color:var(--g-primary);background:rgba(201,168,76,0.08)}
+        .bb-fam-btn-arrow{color:var(--g-primary);transition:transform 0.3s;display:inline-block}
+        .bb-fam-btn:hover .bb-fam-btn-arrow{transform:translateX(4px)}
 
         /* FOOTER */
         .bb-footer-orn{display:flex;align-items:center;justify-content:center;gap:1rem;padding:2.5rem 3rem 4rem}
@@ -297,60 +225,18 @@ const Page = () => {
         .bb-fo-gem{font-size:0.38rem;color:var(--g-deep);opacity:0.6}
         .bb-fo-text{font-family:'Cormorant Garamond',serif;font-size:clamp(0.9rem,1.5vw,1rem);font-style:italic;font-weight:300;color:rgba(255,255,255,0.22);letter-spacing:0.06em}
 
-        /* LIGHTBOX */
-        .bb-lb{position:fixed;inset:0;background:rgba(4,3,2,0.97);z-index:2000;display:flex;align-items:center;justify-content:center;animation:bb-lb-in 0.35s ease;backdrop-filter:blur(12px)}
-        @keyframes bb-lb-in{from{opacity:0}to{opacity:1}}
-        .bb-lb-topbar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid rgba(201,168,76,0.1);background:rgba(8,6,4,0.6);backdrop-filter:blur(10px)}
-        .bb-lb-top-label{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;font-weight:300;color:rgba(255,255,255,0.6)}
-        .bb-lb-top-count{font-size:0.7rem;font-weight:600;letter-spacing:0.2em;color:var(--g-primary)}
-        .bb-lb-top-sep{color:rgba(201,168,76,0.3)}
-        .bb-lb-close{position:absolute;top:1rem;right:1.8rem;width:36px;height:36px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);cursor:pointer;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background 0.3s,border-color 0.3s}
-        .bb-lb-close:hover{background:rgba(201,168,76,0.15);border-color:var(--g-primary)}
-        .bb-lb-x{display:block;width:16px;height:1.5px;background:rgba(255,255,255,0.7);transition:background 0.3s}
-        .bb-lb-x:first-child{transform:rotate(45deg) translate(1px,1px)}
-        .bb-lb-x:last-child{transform:rotate(-45deg) translate(1px,-1px)}
-        .bb-lb-close:hover .bb-lb-x{background:var(--g-light)}
-        .bb-lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(8,6,4,0.7);border:1px solid rgba(201,168,76,0.2);width:52px;height:80px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:border-color 0.3s,background 0.3s}
-        .bb-lb-nav:hover{border-color:var(--g-primary);background:rgba(201,168,76,0.08)}
-        .bb-lb-arrow{font-size:2.2rem;color:rgba(255,255,255,0.5);transition:color 0.3s,transform 0.3s;line-height:1}
-        .bb-lb-nav:hover .bb-lb-arrow{color:var(--g-light)}
-        .bb-lb-prev{left:1rem}
-        .bb-lb-prev:hover .bb-lb-arrow{transform:translateX(-3px)}
-        .bb-lb-next{right:1rem}
-        .bb-lb-next:hover .bb-lb-arrow{transform:translateX(3px)}
-        .bb-lb-frame{display:flex;flex-direction:column;align-items:center;max-width:82vw;max-height:88vh;animation:bb-lb-scale 0.38s cubic-bezier(0.34,1.4,0.64,1)}
-        .bb-lb-frame--anim{animation:bb-lb-switch 0.22s ease}
-        @keyframes bb-lb-scale{from{transform:scale(0.9);opacity:0}to{transform:scale(1);opacity:1}}
-        @keyframes bb-lb-switch{0%{opacity:1;transform:scale(1)}50%{opacity:0;transform:scale(0.96)}100%{opacity:1;transform:scale(1)}}
-        .bb-lb-img-wrap{position:relative;display:flex}
-        .bb-lb-img{max-width:100%;max-height:72vh;object-fit:contain;border:1px solid rgba(201,168,76,0.15);display:block}
-        .bb-lb-corner{position:absolute;width:20px;height:20px;border-style:solid;border-color:var(--g-primary);opacity:0.7;pointer-events:none}
-        .bb-lb-tl{top:-4px;left:-4px;border-width:1.5px 0 0 1.5px}
-        .bb-lb-tr{top:-4px;right:-4px;border-width:1.5px 1.5px 0 0}
-        .bb-lb-bl{bottom:-4px;left:-4px;border-width:0 0 1.5px 1.5px}
-        .bb-lb-br{bottom:-4px;right:-4px;border-width:0 1.5px 1.5px 0}
-        .bb-lb-caption{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:1.4rem;padding:0 0.2rem;gap:1rem}
-        .bb-lb-cap-left{display:flex;align-items:center;gap:1rem}
-        .bb-lb-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:rgba(201,168,76,0.2);line-height:1}
-        .bb-lb-cap-div{width:1px;height:32px;background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.3),transparent)}
-        .bb-lb-cap-info{display:flex;flex-direction:column;gap:0.2rem}
-        .bb-lb-label{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;font-weight:300;color:rgba(255,255,255,0.85)}
-        .bb-lb-sub{font-size:0.55rem;letter-spacing:0.3em;color:rgba(201,168,76,0.5)}
-        .bb-lb-dots{display:flex;gap:0.3rem;flex-wrap:wrap;max-width:200px;justify-content:flex-end}
-        .bb-lb-dot{width:5px;height:5px;border-radius:50%;border:none;background:rgba(255,255,255,0.12);cursor:pointer;transition:background 0.3s,transform 0.3s}
-        .bb-lb-dot--active{background:var(--g-primary);transform:scale(1.4);box-shadow:0 0 5px var(--g-glow-sm)}
-
         /* RESPONSIVE */
-        @media (max-width:900px){
-          .bb-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px;padding:0 1.5rem 3rem}
-          .bb-lb-dots{display:none}
+        @media (max-width:900px) and (min-width:561px){
+          .bb-fam-card{flex-direction:column;max-width:520px;min-height:0}
+          .bb-fam-media{width:100%;height:260px}
+          .bb-fam-body{padding:2.2rem 2.2rem}
         }
         @media (max-width:560px){
-          .bb-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px;gap:3px;padding:0 0.8rem 2.5rem}
           .bb-section-label{padding:2.5rem 1.5rem 1.5rem}
-          .bb-lb-prev{left:0.3rem}.bb-lb-next{right:0.3rem}
-          .bb-lb-frame{max-width:94vw}
-          .bb-lb-num,.bb-lb-cap-div{display:none}
+          .bb-fam-row{flex-direction:column;align-items:stretch;padding:0 1.2rem 2.5rem}
+          .bb-fam-card{max-width:100%;flex-direction:column;min-height:0}
+          .bb-fam-media{width:100%;height:220px}
+          .bb-fam-body{padding:2rem 1.6rem}
         }
       `}</style>
     </div>

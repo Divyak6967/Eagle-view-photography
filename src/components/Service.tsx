@@ -6,7 +6,6 @@ const services = [
   { id: 1,  title: "Engagements",     sub: "Where it all begins",         icon: "/Icons/Engagement.png",  path: "/engagement"  },
   { id: 2,  title: "Pre-Wedding",     sub: "Love before the vows",        icon: "/Icons/pre-wedding.png", path: "/prewedding"  },
   { id: 3,  title: "Weddings",        sub: "The most magical day",        icon: "/Icons/wedding.png",     path: "/weddings"    },
-  { id: 4,  title: "Maternity",       sub: "A new life blooming",         icon: "/Icons/maternity.png",   path: "/maternity"   },
   { id: 5,  title: "Baby Shower",     sub: "Celebrating new arrivals",    icon: "/Icons/babyshower.png",  path: "/babyshower"  },
   { id: 6,  title: "New Born",        sub: "First breaths, first frames", icon: "/Icons/newborn.png",     path: "/newborn"     },
   { id: 7,  title: "Birthday",        sub: "Every year a new story",      icon: "/Icons/birthday.png",    path: "/birthday"    },
